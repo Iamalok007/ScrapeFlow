@@ -1,8 +1,12 @@
 import DesktopSidebar from '@/components/Sidebar'
 import { Separator } from '@/components/ui/separator'
+import BreadcrumHeader from '@/components/Breadcrumheader'
 
 
 import React from 'react'
+import App from 'next/app'
+import { ModeToggle } from '@/components/ThemeModeToggle'
+import { SignedIn, UserButton } from '@clerk/nextjs'
 
 function layout({children}:{children:React.ReactNode}) {
   return (
@@ -10,7 +14,13 @@ function layout({children}:{children:React.ReactNode}) {
         <DesktopSidebar/>
         <div className='flex flex-col flex-1 min-h-screen'>
             <header className='flex items-center justify-between px-6 py-4 h-[50px] container'>
-                FlowScraper
+               <BreadcrumHeader/>
+               <div className='gap-3 flex items-center'>
+                <ModeToggle/>
+                <SignedIn>
+                  <UserButton/>
+                </SignedIn>
+               </div>
             </header>
             <Separator/>
             <div className='overflow-auto'>
